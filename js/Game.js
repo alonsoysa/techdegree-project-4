@@ -91,7 +91,22 @@ class Game {
     * @param (HTMLButtonElement) button - The clicked button element
     */
     handleInteraction(button) {
-        console.log(button);
+        const phrase = this.activePhrase;
+        const letter = button.textContent;
+        const buttonClass = button.classList;
+
+        button.setAttribute('disabled', true);
+
+        if (phrase.checkLetter(letter) ) {
+            buttonClass.add('chosen');
+            phrase.showMatchedLetter(letter);
+            if ( this.checkForWin() ) {
+                this.gameOver(true);
+            }
+        } else {
+            buttonClass.add('wrong');
+            this.removeLife();
+        }
     };
 
 
