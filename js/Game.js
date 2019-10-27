@@ -6,7 +6,7 @@ class Game {
         this.missed = 0;
         this.phrases = this.createPhrases();
         this.activePhrase = null;
-    }
+    };
 
 
     /**
@@ -21,7 +21,7 @@ class Game {
             { phrase: 'To infinity and beyond' },
             // { phrase: 'The rest of the world may follow the rules, but I must follow my heart' }
         ];
-    }
+    };
 
 
     /**
@@ -32,15 +32,7 @@ class Game {
         // get a random number between 0 to the size of the phrases array
         const randomPhrase = Math.floor(Math.random() * this.phrases.length);
         return this.phrases[randomPhrase];
-    }
-
-
-    /**
-    * Logic for gameplay
-    */
-    handleInteraction() {
-
-    }
+    };
 
 
     /**
@@ -91,6 +83,15 @@ class Game {
         }
 
         overlay.style.display = 'block';
+    };
+
+
+    /**
+    * Handles onscreen keyboard button clicks
+    * @param (HTMLButtonElement) button - The clicked button element
+    */
+    handleInteraction(button) {
+        console.log(button);
     };
 
 

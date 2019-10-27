@@ -4,7 +4,7 @@
 class Phrase {
     constructor(phrase) {
         this.phrase = phrase.toLowerCase();
-    }
+    };
 
     /**
     * Display phrase on game board
@@ -16,7 +16,7 @@ class Phrase {
             return `<li class="hide letter ${letterClass}">${letter}</li>`;
         });
         ul.innerHTML = list.join('');
-    }
+    };
 
 
     /**
