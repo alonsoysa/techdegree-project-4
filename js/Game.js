@@ -32,6 +32,65 @@ class Game {
         // get a random number between 0 to the size of the phrases array
         const randomPhrase = Math.floor(Math.random() * this.phrases.length);
         return this.phrases[randomPhrase];
+    }
+
+
+    /**
+    * Logic for gameplay
+    */
+    handleInteraction() {
+
+    }
+
+
+    /**
+    * Checks for winning move
+    * @return {boolean} True if game has been won, false if game wasn't
+    won
+    */
+    checkForWin() {
+        const phrase = document.querySelectorAll('.letter.hide:not(.disabled)');
+        return !phrase.length ? true : false;
+    };
+
+
+    /**
+    * Increases the value of the missed property
+    * Removes a life from the scoreboard
+    * Checks if player has remaining lives and ends game if player is out
+    */
+    removeLife() {
+        this.missed++;
+
+        const hearts = document.querySelectorAll('#scoreboard img[src="images/liveHeart.png"]');
+        console.log(hearts);
+        const lastHeart = hearts.length - 1;
+        console.log(lastHeart);
+        const selectedHeart = hearts[lastHeart];
+
+        selectedHeart.setAttribute('src', 'images/lostHeart.png');
+
+        if ( this.missed === 5 ) {
+            this.gameOver(false);
+        }
+    };
+
+
+    /**
+    * Displays game over message
+    * @param {boolean} gameWon - Whether or not the user won the game
+    */
+    gameOver(gameWon) {
+        const overlay = document.querySelector('#overlay');
+        const message = document.querySelector('#game-over-message');
+
+        if (gameWon) {
+            message.textContent = 'Win';
+        } else {
+            message.textContent = 'Lose';
+        }
+
+        overlay.style.display = 'block';
     };
 
 
