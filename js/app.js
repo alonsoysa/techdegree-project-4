@@ -46,3 +46,14 @@ keyboard.addEventListener('click', (event)=>{
         game.handleInteraction(event.target);
     }
 });
+
+document.addEventListener('keyup', (event) => {
+    if (event.which >= 65 && event.which <= 90 ) {
+        var letter = String.fromCharCode(event.which).toLocaleLowerCase();
+        const buttons = document.querySelectorAll('#qwerty button');
+        const button = [...buttons].filter(item => {
+            return item.textContent === letter;
+        });
+        button[0].click();
+    }
+});
