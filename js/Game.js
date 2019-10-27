@@ -97,7 +97,7 @@ class Game {
 
         button.setAttribute('disabled', true);
 
-        if (phrase.checkLetter(letter) ) {
+        if ( phrase.checkLetter(letter) ) {
             buttonClass.add('chosen');
             phrase.showMatchedLetter(letter);
             if ( this.checkForWin() ) {
@@ -111,11 +111,32 @@ class Game {
 
 
     /**
+    * Resets the board
+    */
+    resetGame() {
+        const ul = document.querySelector('#phrase ul');
+        const buttons = document.querySelectorAll('#qwerty button');
+        const hearts = document.querySelectorAll('#scoreboard img');
+
+        ul.innerHTML = '';
+        buttons.forEach(item => {
+            item.removeAttribute('disabled');
+            item.classList.remove('wrong', 'chosen');
+        });
+        hearts.forEach(item => {
+            item.setAttribute( 'src', 'images/liveHeart.png');
+        });
+    };
+
+
+    /**
     * Begins game by selecting a random phrase and displaying it to user
     */
     startGame() {
         const overlay = document.querySelector('#overlay');
         const phrase = new Phrase(this.getRandomPhrase().phrase);
+
+        this.resetGame();
 
         // hide overlay
         overlay.style.display = 'none';
