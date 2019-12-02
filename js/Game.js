@@ -18,8 +18,7 @@ class Game {
             // { phrase: 'You can do whatever you put your mind to' },
             { phrase: 'Adventure is out there' },
             { phrase: 'Reach for the sky' },
-            { phrase: 'To infinity and beyond' },
-            // { phrase: 'The rest of the world may follow the rules, but I must follow my heart' }
+            { phrase: 'To infinity and beyond' }
         ];
     };
 
