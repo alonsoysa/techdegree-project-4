@@ -13,7 +13,7 @@ class Phrase {
         const ul = document.querySelector('#phrase ul');
         const list = [...this.phrase].map((letter) => {
             const letterClass = letter === ' ' ? 'disabled' : letter;
-            return `<li class="hide letter ${letterClass}">${letter}</li>`;
+            return `<li class="hide letter ${letterClass}"><div class="letter-shape">${letter}</div><div class="duck-silhouette"></div></li>`;
         });
         ul.innerHTML = list.join('');
     };

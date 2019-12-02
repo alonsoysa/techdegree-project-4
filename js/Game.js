@@ -82,7 +82,7 @@ class Game {
             message.textContent = 'Lose';
         }
 
-        overlay.style.display = 'block';
+        overlay.style.display = 'flex';
     };
 
 

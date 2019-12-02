@@ -8,9 +8,9 @@
   --color-lose: #D94545;
   --color-start: #5b85b7;
   --color-neutral: #445069;
-  --color-neutral-light: #D2D2D2;
+  --color-neutral-light: rgba(255,255,255,0.5);
   --color-keys: #37474F;
-  --color-keys-light: #E5E5E5;
+  --color-keys-light: #fff;
   --font-size-large: 60px;
   --font-size-medium: 20px;
   --transition: all .2s ease-in-out;
@@ -28,7 +28,12 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
+  overflow: hidden;
+  
+  margin: 0;
 }
+
+
 
 li, ol, ul {
   padding: 0;
@@ -49,11 +54,13 @@ h1 {
 button {
   margin: 6px;
   border: 1px solid transparent;
-  padding: .5rem 1rem;
+  /* padding: 10px 20px; */
+  width: 44px;
+  height: 44px;
   color: var(--color-keys);
   font-size: var(--font-size-medium);
   background-color: var(--color-keys-light);
-  border-radius: 5px;
+  border-radius: 10px;
   -webkit-transition: var(--transition);
   -o-transition: var(--transition);
   transition: var(--transition);
@@ -62,7 +69,9 @@ button {
 
 #btn__reset {
 	width: 200px;
-	margin: 0 auto;
+  margin: 0 auto;
+  background: #f69937;
+  color: #fff;
 }
 
 .main-container {
@@ -76,7 +85,6 @@ button {
 
 .section {
   width: 100%;
-  padding: 10px;
 }
 
 #phrase ul li{
@@ -87,6 +95,7 @@ button {
 
 .header {
   color: #3a3f58;
+  display: none;
 }
 
 
@@ -94,52 +103,162 @@ button {
 
 .letter {
   font-size: var(--font-size-medium);
-  height: 65px;
-  width: 65px;
-  padding: 20px 1px 0 1px;
+  height: 45px;
+  width: 45px;
   margin-right: 2px;
+  border-radius: 10px;
   color: transparent;
-  background: var(--color-neutral-light);
-  border-radius: 5px;
+  position: relative;
+  vertical-align: middle;
+  
+}
+
+.letter::before {
+  content: "";
+  height: 32px;
+  width: 32px;
+  position: absolute;
+  left: 50%;
+  margin-left: -16px;
+  top: 50%;
+  margin-top: -16px;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background: url(../images/duck.png) no-repeat;
+  background-size: calc(8*32px);
+  background-position: 0 0;
+}
+
+#phrase ul li:nth-child(2n+1).letter::before {
+  background-position: -32px 0;
+}
+
+#phrase ul li:nth-child(2n+2).letter::before {
+  background-position: -64px 0;
+}
+
+#phrase ul li:nth-child(2n+3).letter::before {
+  background-position: -96px 0;
+}
+
+#phrase ul li:nth-child(2n+4).letter::before {
+  background-position: -128px 0;
+}
+
+#phrase ul li:nth-child(2n+5).letter::before {
+  background-position: -160px 0;
+}
+
+.letter.disabled {
+  opacity: 0;
 }
 
 .space {
   width: 15px;
 }
 
-
-
-.show {
-  color: #fff;
-  background-color: #4ac0d5;
+.letter-shape {
+  display: none;
+  color: #000;
+  background-color: #fff;
   font-size: 20px;
-  height: 65px;
-  width: 65px;
-  padding: 20px 1px 0 1px;
+  height: 45px;
+  width: 45px;
+  line-height: 45px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   margin-right: 2px;
-  border-radius: 5px;
-  -webkit-animation-duration: .5s;
-  animation-duration: .5s;
+  border-radius: 10px;
+  z-index: 10;
+}
+
+.show .letter-shape {
+   -webkit-animation-duration: 0.75s;
+   animation-duration: 0.75s;
+   -webkit-animation-name: bounceIn;
+   animation-name: bounceIn;
+  display: block;
+}
+
+.duck-silhouette {
+  height: 32px;
+  width: 32px;
+  position: absolute;
+  left: 50%;
+  margin-left: -16px;
+  top: 50%;
+  margin-top: -16px;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background: url(../images/duck.png) no-repeat;
+  background-size: calc(8*32px);
+  background-position: 0 0;
+  display: none;
+}
+
+#phrase ul li.show .duck-silhouette {
+  background-position: -192px -32px;
+  display: block;
+  /* -webkit-animation-name: slideOutDownDuck; */
+  animation-name: slideOutDownDuck;
+  animation-delay: 0.5s;
+  animation-duration: 2s;
 }
 
 
-/* Keyboard */
+/* @-webkit-keyframes slideOutDownDuck {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 
+  to {
+    visibility: hidden;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+} */
+
+@keyframes slideOutDownDuck {
+  0%, 100% {
+    background-position: -224px -32px;
+  }
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    visibility: hidden;
+    -webkit-transform: translate3d(0, 1200%, 0);
+    transform: translate3d(0, 1200%, 0);
+  }
+}
+
+
+
+/* Keyboard */
 .keyrow {
   display: flex;
   justify-content: center;
 }
 
 .chosen {
-  background: #3a3f58;
-  border-radius: 5px;
+  background: #d82800;
+  border-radius: 10px;
   font-size: var(--font-size-medium);
   color: #FFFFFF;
 }
 
 .wrong {
-  background: #f7a964;
-  color: #FFFFFF;
+  background: url(../images/dog-laugh.gif) no-repeat;
+  background-size: cover;
+  text-indent: -999em;
+  overflow: hidden;
 }
 
 .btn__reset {
@@ -172,15 +291,16 @@ button {
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 100;
   border-radius: 5px;
 }
 
 .title {
-  color: #FFF;
+  color: #04e7d5;
 }
 
 .start {
-  background-color: #3a3f58;
+  background-color: #010001;
 }
 
 .start a {
@@ -201,4 +321,48 @@ button {
 
 .lose a {
   color: var(--color-lose);
+}
+
+.screen {
+  background: #63adff;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.screen-main {
+  width: 100%;
+  flex: 1;
+  position: relative;
+  z-index: 10;
+}
+
+.footer {
+  position: relative;
+  background: #6b6b00;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  padding-top: 76px;
+  z-index: 20;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  left: 0; 
+  top: -76px;
+  right: 0;
+  height: 166px;
+  background: url(../images/footer.png) left top repeat-x;
+  background-size: auto 116px;
+}
+
+.footer-board {
+  background: #000;
+  border: 4px solid #8cd600;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0 5px;
 }
