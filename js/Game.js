@@ -82,6 +82,9 @@ class Game {
         }
 
         overlay.style.display = 'flex';
+
+        // Reset the game
+        this.resetGame();
     };
 
 
@@ -132,9 +135,6 @@ class Game {
     * Begins game by selecting a random phrase and displaying it to user
     */
     startGame() {
-        // Resets the game
-        this.resetGame();
-
         // hide overlay
         const overlay = document.querySelector('#overlay');
         overlay.style.display = 'none';
