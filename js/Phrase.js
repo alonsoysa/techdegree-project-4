@@ -34,8 +34,6 @@ class Phrase {
     showMatchedLetter(letter) {
         let selectedLetter = document.querySelectorAll('.hide.letter.'+letter);
         
-        console.log(selectedLetter);
-
         if (selectedLetter.length === 1) {
             selectedLetter = [...selectedLetter];
         }

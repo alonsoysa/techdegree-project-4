@@ -56,9 +56,7 @@ class Game {
         this.missed++;
 
         const hearts = document.querySelectorAll('#scoreboard img[src="images/liveHeart.png"]');
-        console.log(hearts);
         const lastHeart = hearts.length - 1;
-        console.log(lastHeart);
         const selectedHeart = hearts[lastHeart];
 
         selectedHeart.setAttribute('src', 'images/lostHeart.png');
@@ -134,18 +132,17 @@ class Game {
     * Begins game by selecting a random phrase and displaying it to user
     */
     startGame() {
-        const overlay = document.querySelector('#overlay');
-        const phrase = new Phrase(this.getRandomPhrase().phrase);
-
+        // Resets the game
         this.resetGame();
 
         // hide overlay
+        const overlay = document.querySelector('#overlay');
         overlay.style.display = 'none';
 
-        // add phrase to screen
-        phrase.addPhraseToDisplay();
+        // Set random phrase as active
+        this.activePhrase = new Phrase(this.getRandomPhrase().phrase);
 
-        // set as the active phrase
-        this.activePhrase = phrase;
+        // add phrase to screen
+        this.activePhrase.addPhraseToDisplay();
     };
 }
