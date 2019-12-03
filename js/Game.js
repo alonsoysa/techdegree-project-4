@@ -15,10 +15,12 @@ class Game {
      */
     createPhrases() {
         return [
-            // { phrase: 'You can do whatever you put your mind to' },
             { phrase: 'Adventure is out there' },
             { phrase: 'Reach for the sky' },
-            { phrase: 'To infinity and beyond' }
+            { phrase: 'To infinity and beyond' },
+            { phrase: 'The wilderness must be explored' },
+            { phrase: 'Luck favors the prepared' },
+            { phrase: 'I look at you and I am home' }
         ];
     };
 
